@@ -1,3 +1,5 @@
+import { HomePage } from '@/features/home';
+
 export default function HomeRoute() {
-  return <div>Home</div>;
+  return <HomePage />;
 }
