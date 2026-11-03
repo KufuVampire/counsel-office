@@ -28,19 +28,6 @@ export const links: Route.LinksFunction = () => [
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.googleapis.com',
-  },
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..500;1,7..72,400&family=Onest:wght@400..500&display=swap',
-  },
 ];
 
 export function Layout({ children }: { readonly children: ReactNode }) {
@@ -80,7 +67,9 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     details =
       error.status === 404
         ? 'Запрошенная страница не существует или была перемещена.'
-        : error.data || details;
+        : typeof error.data === 'string'
+          ? error.data
+          : error.data?.message || details;
   } else if (error instanceof Error) {
     details = error.message;
   }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type RefObject } from 'react';
 import { Link, useLocation } from 'react-router';
 import { cn } from '@/shared/lib/cn';
 import { paths } from '@/shared/config/paths';
@@ -12,14 +12,15 @@ export interface MobileMenuProps {
   readonly open: boolean;
   readonly onClose: () => void;
   readonly onOpenConsultation: () => void;
+  readonly triggerRef?: RefObject<HTMLElement | null>;
 }
 
-export function MobileMenu({ open, onClose, onOpenConsultation }: MobileMenuProps) {
+export function MobileMenu({ open, onClose, onOpenConsultation, triggerRef }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
   const { isMounted, state, onAnimationEnd } = usePresence(open);
 
-  useClickOutside(menuRef, onClose, open);
+  useClickOutside(menuRef, onClose, open, triggerRef);
   useEscapeKey(onClose, open);
 
   // Закрытие при смене маршрута
@@ -70,20 +71,20 @@ export function MobileMenu({ open, onClose, onOpenConsultation }: MobileMenuProp
         >
           Блог
         </Link>
-        <a
-          href="/#about"
+        <Link
+          to="/#about"
           onClick={onClose}
           className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
         >
           О специалисте
-        </a>
-        <a
-          href="/#contacts"
+        </Link>
+        <Link
+          to="/#contacts"
           onClick={onClose}
           className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
         >
           Контакты
-        </a>
+        </Link>
       </nav>
 
       <div className="pt-2 border-t border-line-subtle">

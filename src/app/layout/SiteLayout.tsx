@@ -48,9 +48,14 @@ export function SiteLayout({ children, modalContent }: SiteLayoutProps) {
           title="Запись на первичную консультацию"
           description="Оставьте контакты, и адвокат свяжется с вами для уточнения деталей."
         >
-          {modalContent ?? (
-            <ConsultationForm initialPracticeSlug={initialPracticeSlug} onSuccess={closeModal} />
-          )}
+          {isOpen &&
+            (modalContent ?? (
+              <ConsultationForm
+                key={initialPracticeSlug || 'default'}
+                initialPracticeSlug={initialPracticeSlug}
+                onSuccess={closeModal}
+              />
+            ))}
         </Dialog>
       </div>
     </ConsultationModalContext.Provider>

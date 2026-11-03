@@ -32,6 +32,13 @@ export function useSelect({ options, value, onChange, disabled }: UseSelectOptio
     }
   }, [selectedIndex]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const optionsEls = containerRef.current?.querySelectorAll('[role="option"]');
+    const activeEl = optionsEls?.[activeIndex] as HTMLElement | undefined;
+    activeEl?.scrollIntoView({ block: 'nearest' });
+  }, [isOpen, activeIndex]);
+
   const selectOption = (optValue: string) => {
     onChange(optValue);
     setIsOpen(false);

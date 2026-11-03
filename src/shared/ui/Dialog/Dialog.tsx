@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { useScrollLock } from '@/shared/hooks/use-scroll-lock';
 import { IconButton } from '@/shared/ui/IconButton';
@@ -17,6 +17,8 @@ export interface DialogProps {
 export function Dialog({ open, onClose, title, description, className, children }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+  const titleId = useId();
+  const descId = description ? `${titleId}-desc` : undefined;
 
   useScrollLock(open);
 
@@ -57,6 +59,8 @@ export function Dialog({ open, onClose, title, description, className, children 
   return (
     <dialog
       ref={dialogRef}
+      aria-labelledby={titleId}
+      aria-describedby={descId}
       onCancel={(e) => {
         e.preventDefault();
         onClose();
@@ -72,8 +76,14 @@ export function Dialog({ open, onClose, title, description, className, children 
     >
       <div className="flex shrink-0 items-center justify-between border-b border-line-subtle px-6 py-4">
         <div>
-          <h2 className="font-serif text-h3 text-fg leading-tight">{title}</h2>
-          {description && <p className="mt-1 font-sans text-small text-fg-muted">{description}</p>}
+          <h2 id={titleId} className="font-serif text-h3 text-fg leading-tight">
+            {title}
+          </h2>
+          {description && (
+            <p id={descId} className="mt-1 font-sans text-small text-fg-muted">
+              {description}
+            </p>
+          )}
         </div>
         <IconButton
           label="Закрыть окно"

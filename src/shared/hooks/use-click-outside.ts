@@ -4,13 +4,17 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T | null>,
   handler: (event: MouseEvent | TouchEvent) => void,
   enabled: boolean = true,
+  ignoreRef?: RefObject<HTMLElement | null>,
 ): void {
   useEffect(() => {
     if (!enabled) return;
 
     const listener = (event: MouseEvent | TouchEvent) => {
       const el = ref.current;
-      if (!el || el.contains(event.target as Node)) {
+      const ignoreEl = ignoreRef?.current;
+      const target = event.target as Node;
+
+      if (!el || el.contains(target) || (ignoreEl && ignoreEl.contains(target))) {
         return;
       }
       handler(event);
@@ -23,5 +27,5 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
       document.removeEventListener('mousedown', listener);
       document.removeEventListener('touchstart', listener);
     };
-  }, [ref, handler, enabled]);
+  }, [ref, handler, enabled, ignoreRef]);
 }

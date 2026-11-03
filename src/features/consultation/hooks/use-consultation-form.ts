@@ -95,6 +95,17 @@ export function useConsultationForm({
   };
 
   const reset = () => {
+    setValues({
+      name: '',
+      phone: '',
+      contactMethod: 'phone',
+      practiceArea: initialPracticeSlug ?? 'semejnoe-pravo',
+      description: '',
+      consent: true,
+      honeypot: '',
+    });
+    setErrors({});
+    setTouched({});
     setStatus('idle');
     setErrorMessage('');
   };

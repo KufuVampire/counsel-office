@@ -17,11 +17,11 @@ export function Select({
   invalid: propInvalid,
   className,
 }: SelectProps) {
+  const field = useFormField();
   const generatedId = useId();
-  const selectId = propId || generatedId;
+  const selectId = propId || field?.id || generatedId;
   const listboxId = `${selectId}-listbox`;
 
-  const field = useFormField();
   const isInvalid = propInvalid ?? field?.invalid;
 
   const {

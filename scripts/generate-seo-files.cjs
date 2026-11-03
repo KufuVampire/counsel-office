@@ -55,5 +55,5 @@ function writeTo(dir) {
   }
 }
 
-writeTo(publicDir);
+// Generate files only into client build directory to avoid mutating tracked public/ files
 writeTo(clientBuildDir);

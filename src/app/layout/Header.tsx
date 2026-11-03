@@ -1,5 +1,5 @@
 import { ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { cn } from '@/shared/lib/cn';
 import { paths } from '@/shared/config/paths';
@@ -18,6 +18,7 @@ export interface HeaderProps {
 
 export function Header({ onOpenConsultation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement | null>(null);
 
   const practiceMenuItems = PRACTICE_CATALOG.map((item) => ({
     label: item.title,
@@ -62,18 +63,18 @@ export function Header({ onOpenConsultation }: HeaderProps) {
           >
             Блог
           </Link>
-          <a
-            href="/#about"
+          <Link
+            to="/#about"
             className="text-small font-sans text-fg-muted hover:text-fg transition-colors duration-fast focus-ring rounded-sm px-2 py-1"
           >
             О специалисте
-          </a>
-          <a
-            href="/#contacts"
+          </Link>
+          <Link
+            to="/#contacts"
             className="text-small font-sans text-fg-muted hover:text-fg transition-colors duration-fast focus-ring rounded-sm px-2 py-1"
           >
             Контакты
-          </a>
+          </Link>
         </nav>
 
         {/* Action Button & Mobile Burger */}
@@ -88,6 +89,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
           </Button>
 
           <BurgerButton
+            ref={burgerRef}
             open={mobileMenuOpen}
             controls="mobile-navigation"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -101,6 +103,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
         open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         onOpenConsultation={onOpenConsultation}
+        triggerRef={burgerRef}
       />
     </header>
   );

@@ -12,6 +12,8 @@ import { Select } from '@/shared/ui/Select';
 import { Textarea } from '@/shared/ui/Textarea';
 import { PRACTICE_OPTIONS } from '../data/practice-options';
 import { useConsultationForm } from '../hooks/use-consultation-form';
+import { ConsultationHoneypot } from './ConsultationHoneypot';
+import { ConsultationSuccess } from './ConsultationSuccess';
 
 export interface ConsultationFormProps {
   readonly initialPracticeSlug?: string;
@@ -39,17 +41,7 @@ export function ConsultationForm({
   } = useConsultationForm({ initialPracticeSlug, onSuccess });
 
   if (status === 'success') {
-    return (
-      <div className={cn('flex flex-col gap-4 py-4', className)}>
-        <Alert tone="success" title="Заявка принята" role="status">
-          Благодарим за обращение. Адвокат свяжется с вами в течение рабочего дня для уточнения
-          деталей.
-        </Alert>
-        <Button variant="secondary" size="md" onClick={reset}>
-          Отправить ещё одну заявку
-        </Button>
-      </div>
-    );
+    return <ConsultationSuccess onReset={reset} className={className} />;
   }
 
   return (
@@ -60,17 +52,10 @@ export function ConsultationForm({
         </Alert>
       )}
 
-      {/* Honeypot field for anti-spam */}
-      <div aria-hidden="true" className="sr-only">
-        <label htmlFor="form-verification">Проверочное поле</label>
-        <input
-          id="form-verification"
-          tabIndex={-1}
-          autoComplete="off"
-          value={values.honeypot}
-          onChange={(e) => setFieldValue('honeypot', e.target.value)}
-        />
-      </div>
+      <ConsultationHoneypot
+        value={values.honeypot}
+        onChange={(val) => setFieldValue('honeypot', val)}
+      />
 
       <FormField label="Ваше имя" required error={touched.name ? errors.name : undefined}>
         <Input
@@ -134,6 +119,7 @@ export function ConsultationForm({
             Согласен на{' '}
             <Link
               to={paths.privacy}
+              onClick={(e) => e.stopPropagation()}
               className="text-link underline underline-offset-2 hover:text-link-hover"
             >
               обработку персональных данных
