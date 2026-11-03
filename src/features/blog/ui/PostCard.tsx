@@ -4,6 +4,7 @@ import { paths } from '@/shared/config/paths';
 import { formatDate } from '@/shared/lib/format-date';
 import { Badge } from '@/shared/ui/Badge';
 import { Card } from '@/shared/ui/Card';
+import { Divider } from '@/shared/ui/Divider';
 import type { Post } from '../types';
 
 export interface PostCardProps {
@@ -31,7 +32,7 @@ export function PostCard({ post, className }: PostCardProps) {
         <h3 className="font-serif text-h3 text-fg group-hover:text-primary transition-colors duration-fast">
           <Link
             to={paths.post(post.slug)}
-            className="focus-ring rounded-sm focus:outline-none focus-visible:ring-2"
+            className="focus-ring rounded-sm focus:outline-none focus-visible:ring-2 before:absolute before:inset-0"
           >
             {post.title}
           </Link>
@@ -42,7 +43,8 @@ export function PostCard({ post, className }: PostCardProps) {
         </p>
       </div>
 
-      <div className="mt-6 pt-4 border-t border-line-subtle">
+      <div className="mt-6 pt-2">
+        <Divider tone="subtle" className="mb-4" />
         <span className="font-sans text-small font-medium text-link group-hover:text-link-hover transition-colors duration-fast">
           Читать статью
         </span>

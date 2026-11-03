@@ -1,13 +1,7 @@
 import { useParams } from 'react-router';
 import type { Route } from './+types/blog-post';
 import { BlogPostPage, POSTS } from '@/features/blog';
-import {
-  buildBlogPostSchema,
-  buildBreadcrumbsSchema,
-  buildCanonicalLink,
-  buildMeta,
-  JsonLd,
-} from '@/shared/seo';
+import { buildBlogPostSchema, buildBreadcrumbsSchema, buildMeta, JsonLd } from '@/shared/seo';
 
 export const meta: Route.MetaFunction = ({ params }) => {
   const slug = params.slug ?? '';
@@ -50,7 +44,6 @@ export default function BlogPostRoute() {
 
   return (
     <>
-      <link rel="canonical" href={buildCanonicalLink(`/blog/${slug}`)[0]?.href} />
       <JsonLd data={structuredData} />
       <BlogPostPage slug={slug} />
     </>

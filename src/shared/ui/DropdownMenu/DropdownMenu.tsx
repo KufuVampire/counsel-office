@@ -73,6 +73,7 @@ export function DropdownMenu({ trigger, items, align = 'left', className }: Drop
   return (
     <div ref={containerRef} className={cn('relative inline-block', className)}>
       {trigger({
+        ref: triggerButtonRef,
         'aria-haspopup': 'menu',
         'aria-expanded': isOpen,
         onClick: toggle,

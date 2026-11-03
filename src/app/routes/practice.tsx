@@ -3,7 +3,6 @@ import type { Route } from './+types/practice';
 import { getPracticeBySlug, PracticePage } from '@/features/practice';
 import {
   buildBreadcrumbsSchema,
-  buildCanonicalLink,
   buildMeta,
   buildPracticeServiceSchema,
   JsonLd,
@@ -49,7 +48,6 @@ export default function PracticeRoute() {
 
   return (
     <>
-      <link rel="canonical" href={buildCanonicalLink(`/practice/${slug}`)[0]?.href} />
       <JsonLd data={structuredData} />
       <PracticePage slug={slug} />
     </>

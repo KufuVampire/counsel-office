@@ -48,19 +48,19 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/#about" className="hover:text-fg transition-colors duration-fast">
+                <Link to="/#about" className="hover:text-fg transition-colors duration-fast">
                   О специалисте
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#process" className="hover:text-fg transition-colors duration-fast">
+                <Link to="/#process" className="hover:text-fg transition-colors duration-fast">
                   Как мы работаем
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#contacts" className="hover:text-fg transition-colors duration-fast">
+                <Link to="/#contacts" className="hover:text-fg transition-colors duration-fast">
                   Контакты
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

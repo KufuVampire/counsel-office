@@ -10,6 +10,7 @@ import { Container } from '@/shared/ui/Container';
 import { DropdownMenu } from '@/shared/ui/DropdownMenu';
 import { Icon } from '@/shared/ui/Icon';
 import { Logo } from '@/shared/ui/Logo';
+import { NavLinkItem } from '@/shared/ui/NavLinkItem';
 import { MobileMenu } from './MobileMenu';
 
 export interface HeaderProps {
@@ -34,8 +35,9 @@ export function Header({ onOpenConsultation }: HeaderProps) {
         <nav aria-label="Основная навигация" className="hidden md:flex items-center gap-6">
           <DropdownMenu
             items={practiceMenuItems}
-            trigger={({ 'aria-expanded': expanded, onClick, onKeyDown, isOpen }) => (
+            trigger={({ 'aria-expanded': expanded, onClick, onKeyDown, isOpen, ref }) => (
               <button
+                ref={ref}
                 type="button"
                 aria-expanded={expanded}
                 onClick={onClick}
@@ -57,12 +59,9 @@ export function Header({ onOpenConsultation }: HeaderProps) {
             )}
           />
 
-          <Link
-            to={paths.blog}
-            className="text-small font-sans text-fg-muted hover:text-fg transition-colors duration-fast focus-ring rounded-sm px-2 py-1"
-          >
+          <NavLinkItem to={paths.blog} className="h-control-sm px-2 py-0 text-small">
             Блог
-          </Link>
+          </NavLinkItem>
           <Link
             to="/#about"
             className="text-small font-sans text-fg-muted hover:text-fg transition-colors duration-fast focus-ring rounded-sm px-2 py-1"

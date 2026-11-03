@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function useEscapeKey(
   handler: (event: KeyboardEvent) => void,
   enabled: boolean = true,
 ): void {
+  const handlerRef = useRef(handler);
+  handlerRef.current = handler;
+
   useEffect(() => {
     if (!enabled) return;
 
     const listener = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        handler(event);
+        handlerRef.current(event);
       }
     };
 
@@ -17,5 +20,5 @@ export function useEscapeKey(
     return () => {
       document.removeEventListener('keydown', listener);
     };
-  }, [handler, enabled]);
+  }, [enabled]);
 }

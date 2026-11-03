@@ -35,6 +35,7 @@ export function buildMeta({
     { title: formattedTitle },
     { name: 'description', content: description },
     { name: 'robots', content: robots },
+    { tagName: 'link', rel: 'canonical', href: canonicalUrl },
     { property: 'og:site_name', content: siteConfig.brandName },
     { property: 'og:title', content: formattedTitle },
     { property: 'og:description', content: description },

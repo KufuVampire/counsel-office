@@ -19,6 +19,7 @@ export function SelectOption({
   id,
 }: SelectOptionProps) {
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
       id={id}
       role="option"
@@ -26,12 +27,6 @@ export function SelectOption({
       aria-selected={isSelected}
       onClick={() => onSelect(option.value)}
       onMouseEnter={onMouseEnter}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onSelect(option.value);
-        }
-      }}
       className={cn(
         'relative flex items-center justify-between px-3 py-2 text-small font-sans cursor-pointer select-none rounded-sm transition-colors duration-fast',
         isActive && 'bg-hover text-fg',

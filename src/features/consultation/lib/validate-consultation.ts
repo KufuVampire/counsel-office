@@ -17,7 +17,7 @@ export function validateConsultation(values: ConsultationFormValues): Consultati
     phoneDigits.length < 11 &&
     !(phoneDigits.length === 10 && phoneDigits.startsWith('9'))
   ) {
-    errors.phone = 'Пожалуйста, укажите полный номер телефона (10 цифр)';
+    errors.phone = 'Пожалуйста, укажите полный номер телефона';
   }
 
   if (!values.contactMethod) {

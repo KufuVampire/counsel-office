@@ -8,7 +8,7 @@
   }
 
   body {
-    min-width: 360px;
+    min-width: 320px;
     background-color: var(--color-page);
     color: var(--color-fg);
     font-family: var(--font-sans);

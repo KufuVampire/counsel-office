@@ -31,7 +31,10 @@ export function PracticeAreasSection() {
             >
               <div className="flex flex-col gap-3">
                 <h3 className="font-serif text-h3 text-fg group-hover:text-primary transition-colors duration-fast">
-                  <Link to={paths.practice(practice.slug)} className="focus-ring rounded-sm">
+                  <Link
+                    to={paths.practice(practice.slug)}
+                    className="focus-ring rounded-sm before:absolute before:inset-0"
+                  >
                     {practice.title}
                   </Link>
                 </h3>

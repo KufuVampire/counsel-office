@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const zlib = require('zlib');
 
 function makePng(width, height) {
@@ -46,5 +47,5 @@ function makePng(width, height) {
 }
 
 const png = makePng(1200, 630);
-fs.writeFileSync('C:/Users/User/Desktop/js/counsel-office/public/og-default.png', png);
+fs.writeFileSync(path.join(__dirname, '../public/og-default.png'), png);
 console.log('og-default.png written successfully: ' + png.length + ' bytes');

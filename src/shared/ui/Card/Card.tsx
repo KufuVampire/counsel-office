@@ -25,7 +25,7 @@ export function Card<T extends ElementType = 'div'>({
       className={cn(
         'rounded-lg bg-surface border border-line-subtle transition-colors duration-fast',
         cardPaddingStyles[padding],
-        interactive && 'hover:border-line-strong cursor-pointer focus-within:border-focus',
+        interactive && 'relative hover:border-line-strong cursor-pointer focus-within:border-focus',
         className,
       )}
       {...rest}
