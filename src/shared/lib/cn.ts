@@ -9,11 +9,11 @@ const customTwMerge = extendTailwindMerge({
         'text-h1',
         'text-h2',
         'text-h3',
+        'text-h4',
+        'text-body-lg',
         'text-body',
-        'text-body-lead',
         'text-small',
         'text-caption',
-        'text-legal',
       ],
       'text-color': [
         'text-page',

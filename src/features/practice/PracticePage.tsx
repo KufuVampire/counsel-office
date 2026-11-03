@@ -1,5 +1,6 @@
 import { NotFoundPage } from '@/features/not-found';
 import { paths } from '@/shared/config/paths';
+import { buildBreadcrumbsSchema, buildPracticeServiceSchema, usePageMeta } from '@/shared/seo';
 import { Accordion } from '@/shared/ui/Accordion';
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs';
 import { Card } from '@/shared/ui/Card';
@@ -17,6 +18,23 @@ export interface PracticePageProps {
 
 export function PracticePage({ slug }: PracticePageProps) {
   const practice = getPracticeBySlug(slug);
+
+  usePageMeta({
+    title: practice?.title ?? 'Страница не найдена',
+    description: practice?.lead ?? '',
+    path: practice ? paths.practice(practice.slug) : '/404',
+    noindex: !practice,
+    jsonLd: practice
+      ? [
+          buildPracticeServiceSchema(practice.slug, practice.title, practice.lead),
+          buildBreadcrumbsSchema([
+            { name: 'Главная', path: paths.home },
+            { name: 'Направления', path: '/#practices' },
+            { name: practice.title, path: paths.practice(practice.slug) },
+          ]),
+        ]
+      : undefined,
+  });
 
   if (!practice) {
     return <NotFoundPage />;
@@ -55,7 +73,7 @@ export function PracticePage({ slug }: PracticePageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {practice.services.map((service, idx) => (
               <Card key={idx} padding="md" className="bg-surface border-line-subtle">
-                <p className="font-sans text-body text-fg leading-relaxed">{service}</p>
+                <Text size="body">{service}</Text>
               </Card>
             ))}
           </div>
@@ -89,7 +107,7 @@ export function PracticePage({ slug }: PracticePageProps) {
             </Heading>
           </div>
           <div className="max-w-narrow">
-            <Accordion items={practice.faq} name={`practice-faq-${practice.slug}`} />
+            <Accordion items={practice.faq} />
           </div>
         </Container>
       </Section>

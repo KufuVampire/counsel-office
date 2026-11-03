@@ -33,12 +33,13 @@ export function Dialog({ open, onClose, title, description, className, children 
       if (!dialog.open) {
         dialog.showModal();
       }
-    } else {
-      if (dialog.open) {
-        dialog.close();
-      }
-      triggerRef.current?.focus();
+    } else if (dialog.open) {
+      dialog.close();
     }
+
+    return () => {
+      triggerRef.current?.focus();
+    };
   }, [open]);
 
   useEffect(() => {

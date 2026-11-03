@@ -1,5 +1,6 @@
 import { paths } from '@/shared/config/paths';
 import { siteConfig } from '@/shared/config/site';
+import { usePageMeta } from '@/shared/seo';
 import { Alert } from '@/shared/ui/Alert';
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs';
 import { Container } from '@/shared/ui/Container';
@@ -12,6 +13,13 @@ export function PrivacyPage() {
     { label: 'Главная', to: paths.home },
     { label: 'Политика конфиденциальности' },
   ];
+
+  usePageMeta({
+    title: 'Политика конфиденциальности',
+    description: 'Политика обработки и защиты персональных данных пользователей',
+    path: paths.privacy,
+    noindex: true,
+  });
 
   return (
     <Section tone="page" spacing="default">

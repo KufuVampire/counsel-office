@@ -7,7 +7,6 @@ export interface AccordionItemProps {
   readonly id: string;
   readonly title: string;
   readonly content: ReactNode;
-  readonly name?: string;
   readonly defaultOpen?: boolean;
   readonly isOpen?: boolean;
   readonly onToggle?: () => void;
@@ -51,7 +50,7 @@ export function AccordionItem({
           aria-expanded={isOpen}
           aria-controls={contentId}
           onClick={handleToggle}
-          className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-sans text-body font-medium text-fg select-none focus-ring rounded-sm transition-colors duration-fast hover:text-fg-hover"
+          className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-sans text-body font-medium text-fg select-none focus-ring rounded-sm transition-colors duration-fast hover:text-primary"
         >
           <span>{title}</span>
           <Icon

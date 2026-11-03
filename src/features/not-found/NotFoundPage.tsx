@@ -1,4 +1,5 @@
 import { paths } from '@/shared/config/paths';
+import { usePageMeta } from '@/shared/seo';
 import { ButtonLink } from '@/shared/ui/ButtonLink';
 import { Container } from '@/shared/ui/Container';
 import { Heading } from '@/shared/ui/Heading';
@@ -6,6 +7,13 @@ import { Section } from '@/shared/ui/Section';
 import { Text } from '@/shared/ui/Text';
 
 export function NotFoundPage() {
+  usePageMeta({
+    title: 'Страница не найдена',
+    description: 'Запрошенная страница не существует',
+    path: '/404',
+    noindex: true,
+  });
+
   return (
     <Section tone="page" spacing="default" className="min-h-[70vh] flex items-center">
       <Container size="reading" className="text-center flex flex-col items-center gap-6">

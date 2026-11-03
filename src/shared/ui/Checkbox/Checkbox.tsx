@@ -50,16 +50,14 @@ export function Checkbox({
             'border border-line-strong bg-surface transition-colors duration-fast mt-0.5',
             'peer-focus-visible:outline-2 peer-focus-visible:outline-focus peer-focus-visible:outline-offset-2',
             'peer-checked:bg-primary peer-checked:border-primary text-primary-fg',
+            'peer-checked:[&_svg]:scale-100 peer-checked:[&_svg]:opacity-100',
             error && 'border-danger',
           )}
         >
           <Icon
             icon={Check}
             size="sm"
-            className={cn(
-              'transition-transform duration-fast stroke-[3]',
-              checked ? 'scale-100 opacity-100' : 'scale-0 opacity-0',
-            )}
+            className="transition-transform duration-fast stroke-[3] scale-0 opacity-0"
           />
         </span>
         <span className="text-small text-fg leading-snug">{label}</span>

@@ -58,7 +58,7 @@ export function FAQSection() {
         </div>
 
         <div className="max-w-narrow">
-          <Accordion items={FAQ_ITEMS} name="home-faq" />
+          <Accordion items={FAQ_ITEMS} />
         </div>
       </Container>
     </Section>

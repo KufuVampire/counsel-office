@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { paths } from '@/shared/config/paths';
+import { buildBlogCollectionSchema, usePageMeta } from '@/shared/seo';
 import { Container } from '@/shared/ui/Container';
 import { Heading } from '@/shared/ui/Heading';
 import { Section } from '@/shared/ui/Section';
@@ -26,6 +28,14 @@ export function BlogPage() {
     }
     return POSTS.filter((post) => post.category === selectedCategory);
   }, [selectedCategory]);
+
+  usePageMeta({
+    title: 'Блог и материалы',
+    description:
+      'Практические статьи, разъяснения правовых процедур и рекомендации адвоката по семейным, арбитражным и банкротным делам.',
+    path: paths.blog,
+    jsonLd: buildBlogCollectionSchema(),
+  });
 
   return (
     <Section tone="page" spacing="default">

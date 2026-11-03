@@ -11,12 +11,11 @@ export interface AccordionEntry {
 
 export interface AccordionProps {
   readonly items: readonly AccordionEntry[];
-  readonly name?: string;
   readonly className?: string;
   readonly allowMultiple?: boolean;
 }
 
-export function Accordion({ items, name, className, allowMultiple = false }: AccordionProps) {
+export function Accordion({ items, className, allowMultiple = false }: AccordionProps) {
   const [openIds, setOpenIds] = useState<ReadonlySet<string>>(() => {
     const initial = new Set<string>();
     items.forEach((item) => {
@@ -48,7 +47,6 @@ export function Accordion({ items, name, className, allowMultiple = false }: Acc
         <AccordionItem
           key={item.id}
           id={item.id}
-          name={name}
           title={item.title}
           content={item.content}
           isOpen={openIds.has(item.id)}

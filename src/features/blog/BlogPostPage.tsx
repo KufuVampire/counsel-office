@@ -1,6 +1,7 @@
 import { NotFoundPage } from '@/features/not-found';
 import { paths } from '@/shared/config/paths';
 import { formatDate } from '@/shared/lib/format-date';
+import { buildBlogPostSchema, buildBreadcrumbsSchema, usePageMeta } from '@/shared/seo';
 import { Badge } from '@/shared/ui/Badge';
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs';
 import { Card } from '@/shared/ui/Card';
@@ -19,6 +20,24 @@ export interface BlogPostPageProps {
 
 export function BlogPostPage({ slug }: BlogPostPageProps) {
   const post = POSTS.find((p) => p.slug === slug);
+
+  usePageMeta({
+    title: post?.title ?? 'Статья не найдена',
+    description: post?.description ?? '',
+    path: post ? paths.post(post.slug) : '/404',
+    type: 'article',
+    noindex: !post,
+    jsonLd: post
+      ? [
+          buildBlogPostSchema(post),
+          buildBreadcrumbsSchema([
+            { name: 'Главная', path: paths.home },
+            { name: 'Блог', path: paths.blog },
+            { name: post.title, path: paths.post(post.slug) },
+          ]),
+        ]
+      : undefined,
+  });
 
   if (!post) {
     return <NotFoundPage />;

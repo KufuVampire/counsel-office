@@ -1,5 +1,6 @@
 import { paths } from '@/shared/config/paths';
 import { siteConfig } from '@/shared/config/site';
+import { usePageMeta } from '@/shared/seo';
 import { Alert } from '@/shared/ui/Alert';
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs';
 import { Container } from '@/shared/ui/Container';
@@ -12,6 +13,13 @@ export function TermsPage() {
     { label: 'Главная', to: paths.home },
     { label: 'Пользовательское соглашение' },
   ];
+
+  usePageMeta({
+    title: 'Пользовательское соглашение',
+    description: 'Условия использования информационных материалов сайта',
+    path: paths.terms,
+    noindex: true,
+  });
 
   return (
     <Section tone="page" spacing="default">
