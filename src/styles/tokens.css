@@ -106,9 +106,9 @@
 @theme {
   --font-*: initial;
   --font-sans:
-    'Onest Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
-  --font-serif: 'Literata Variable', ui-serif, Georgia, 'Times New Roman', serif;
+    'Onest', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-serif: 'Literata', ui-serif, Georgia, 'Times New Roman', serif;
   --default-font-family: var(--font-sans);
 
   --leading-*: initial;
