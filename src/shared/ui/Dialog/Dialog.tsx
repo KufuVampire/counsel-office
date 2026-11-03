@@ -66,7 +66,7 @@ export function Dialog({ open, onClose, title, description, className, children 
         onClose();
       }}
       className={cn(
-        'fixed inset-0 m-auto z-modal bg-surface text-fg',
+        'fixed inset-0 m-auto z-modal bg-surface text-fg [&:not([open])]:hidden',
         'w-full h-dvh max-w-none rounded-none sm:h-auto sm:max-w-narrow sm:rounded-lg',
         'border border-line-subtle shadow-overlay flex flex-col',
         'backdrop:bg-overlay backdrop:backdrop-blur-xs',

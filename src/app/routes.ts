@@ -7,5 +7,7 @@ export default [
   route('blog/:slug', 'routes/blog-post.tsx'),
   route('privacy', 'routes/privacy.tsx'),
   route('terms', 'routes/terms.tsx'),
+  route('robots.txt', 'routes/robots[.]txt.ts'),
+  route('sitemap.xml', 'routes/sitemap[.]xml.ts'),
   route('*', 'routes/not-found.tsx'),
 ] satisfies RouteConfig;

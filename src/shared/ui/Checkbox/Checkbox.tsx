@@ -1,5 +1,7 @@
+import { Check } from 'lucide-react';
 import { useId, type ComponentPropsWithoutRef, type ReactNode, type Ref } from 'react';
 import { cn } from '@/shared/lib/cn';
+import { Icon } from '@/shared/ui/Icon';
 
 export interface CheckboxProps extends Omit<ComponentPropsWithoutRef<'input'>, 'type'> {
   readonly label: ReactNode;
@@ -51,17 +53,14 @@ export function Checkbox({
             error && 'border-danger',
           )}
         >
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-3.5 w-3.5 scale-0 transition-transform duration-fast peer-checked:scale-100"
-          >
-            <polyline points="3 8 6.5 11.5 13 4" />
-          </svg>
+          <Icon
+            icon={Check}
+            size="sm"
+            className={cn(
+              'transition-transform duration-fast stroke-[3]',
+              checked ? 'scale-100 opacity-100' : 'scale-0 opacity-0',
+            )}
+          />
         </span>
         <span className="text-small text-fg leading-snug">{label}</span>
       </label>

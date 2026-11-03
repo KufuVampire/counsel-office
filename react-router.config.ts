@@ -17,6 +17,8 @@ export default {
       '/blog',
       '/privacy',
       '/terms',
+      '/robots.txt',
+      '/sitemap.xml',
       ...PRACTICE_CATALOG.map((item) => `/practice/${item.slug}`),
       ...BLOG_SLUGS.map((slug) => `/blog/${slug}`),
     ];

@@ -38,8 +38,10 @@ export function AccordionItem({
           className="text-fg-muted transition-transform duration-base group-open:rotate-180 shrink-0"
         />
       </summary>
-      <div className="mt-3 font-sans text-small text-fg-muted leading-relaxed overflow-hidden">
-        {content}
+      <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-base ease-standard group-open:grid-rows-[1fr]">
+        <div className="overflow-hidden font-sans text-small text-fg-muted leading-relaxed">
+          <div className="pt-3">{content}</div>
+        </div>
       </div>
     </details>
   );

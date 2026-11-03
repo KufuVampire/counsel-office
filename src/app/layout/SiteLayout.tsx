@@ -42,21 +42,22 @@ export function SiteLayout({ children, modalContent }: SiteLayoutProps) {
         </main>
         <Footer />
 
-        <Dialog
-          open={isOpen}
-          onClose={closeModal}
-          title="Запись на первичную консультацию"
-          description="Оставьте контакты, и адвокат свяжется с вами для уточнения деталей."
-        >
-          {isOpen &&
-            (modalContent ?? (
+        {isOpen && (
+          <Dialog
+            open={isOpen}
+            onClose={closeModal}
+            title="Запись на первичную консультацию"
+            description="Оставьте контакты, и адвокат свяжется с вами для уточнения деталей."
+          >
+            {modalContent ?? (
               <ConsultationForm
                 key={initialPracticeSlug || 'default'}
                 initialPracticeSlug={initialPracticeSlug}
                 onSuccess={closeModal}
               />
-            ))}
-        </Dialog>
+            )}
+          </Dialog>
+        )}
       </div>
     </ConsultationModalContext.Provider>
   );

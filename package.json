@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build && node scripts/generate-seo-files.cjs",
+    "build": "react-router build",
     "preview": "vite preview",
-    "typecheck": "react-router typegen && tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "node --test test/unit.test.ts",
     "format": "prettier --write .",

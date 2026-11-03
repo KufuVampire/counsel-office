@@ -2,6 +2,7 @@ import { ChevronDown } from 'lucide-react';
 import { useId } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { useFormField } from '@/shared/ui/FormField';
+import { usePresence } from '@/shared/hooks/use-presence';
 import { Icon } from '@/shared/ui/Icon';
 import { SelectOption } from './SelectOption';
 import type { SelectProps } from './select.types';
@@ -35,6 +36,8 @@ export function Select({
     handleKeyDown,
   } = useSelect({ options, value, onChange, disabled });
 
+  const { isMounted, state, onAnimationEnd } = usePresence(isOpen);
+
   const selectedOption = options.find((opt) => opt.value === value);
   const activeDescendantId =
     isOpen && options[activeIndex] ? `${selectId}-opt-${activeIndex}` : undefined;
@@ -58,7 +61,7 @@ export function Select({
         className={cn(
           'w-full h-control-md px-3 rounded-md bg-surface text-fg font-sans text-small text-left',
           'border border-line-strong flex items-center justify-between gap-2',
-          'focus-ring transition-colors duration-fast select-none',
+          'focus-ring transition-colors duration-fast select-none cursor-pointer',
           'disabled:bg-disabled disabled:text-disabled-fg disabled:cursor-not-allowed',
           isInvalid && 'border-danger focus:outline-danger',
         )}
@@ -73,15 +76,18 @@ export function Select({
         />
       </button>
 
-      {isOpen && (
+      {isMounted && (
         <div
           id={listboxId}
           role="listbox"
           tabIndex={-1}
+          data-state={state}
+          onAnimationEnd={onAnimationEnd}
           className={cn(
             'absolute left-0 top-full mt-1 w-full z-dropdown p-1',
             'rounded-md bg-surface border border-line-subtle shadow-sm',
-            'max-h-60 overflow-y-auto scrollbar-custom origin-top animate-pop-in',
+            'max-h-60 overflow-y-auto scrollbar-custom origin-top',
+            state === 'open' ? 'animate-pop-in' : 'animate-pop-out',
           )}
         >
           {options.map((option, idx) => (

@@ -27,7 +27,7 @@ export function BurgerButton({
       onClick={onClick}
       className={cn(
         'relative inline-flex h-control-md w-control-md items-center justify-center rounded-md',
-        'text-fg hover:bg-hover active:bg-surface-muted focus-ring transition-colors duration-fast select-none',
+        'text-fg hover:bg-hover active:bg-surface-muted focus-ring transition-colors duration-fast select-none cursor-pointer',
         className,
       )}
       {...rest}

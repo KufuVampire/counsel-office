@@ -27,7 +27,7 @@ export function IconButton({
       type={type}
       aria-label={label}
       className={cn(
-        'inline-flex items-center justify-center rounded-md focus-ring transition-colors duration-fast select-none',
+        'inline-flex items-center justify-center rounded-md focus-ring transition-colors duration-fast select-none cursor-pointer',
         'disabled:bg-disabled disabled:text-disabled-fg disabled:cursor-not-allowed',
         buttonVariantStyles[variant],
         iconButtonSizeStyles[size],

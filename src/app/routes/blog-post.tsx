@@ -1,9 +1,8 @@
 import { useParams } from 'react-router';
-import type { Route } from './+types/blog-post';
 import { BlogPostPage, POSTS } from '@/features/blog';
 import { buildBlogPostSchema, buildBreadcrumbsSchema, buildMeta, JsonLd } from '@/shared/seo';
 
-export const meta: Route.MetaFunction = ({ params }) => {
+export const meta = ({ params }: { readonly params: { readonly slug?: string } }) => {
   const slug = params.slug ?? '';
   const post = POSTS.find((p) => p.slug === slug);
 

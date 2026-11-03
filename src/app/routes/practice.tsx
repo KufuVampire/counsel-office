@@ -1,5 +1,4 @@
 import { useParams } from 'react-router';
-import type { Route } from './+types/practice';
 import { getPracticeBySlug, PracticePage } from '@/features/practice';
 import {
   buildBreadcrumbsSchema,
@@ -8,7 +7,7 @@ import {
   JsonLd,
 } from '@/shared/seo';
 
-export const meta: Route.MetaFunction = ({ params }) => {
+export const meta = ({ params }: { readonly params: { readonly slug?: string } }) => {
   const slug = params.slug ?? '';
   const practice = getPracticeBySlug(slug);
 

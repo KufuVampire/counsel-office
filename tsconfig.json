@@ -28,7 +28,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "rootDirs": [".", "./.react-router/types"]
+    "rootDirs": ["."]
   },
-  "include": ["src", ".react-router/types"]
+  "include": ["src"]
 }

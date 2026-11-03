@@ -7,7 +7,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router';
-import type { Route } from './+types/root';
 import onestCyrillicWoff2 from '@fontsource-variable/onest/files/onest-cyrillic-wght-normal.woff2?url';
 import '@fontsource-variable/onest';
 import '@fontsource-variable/literata';
@@ -15,7 +14,7 @@ import '@/styles/index.css';
 
 import { SiteLayout } from './layout';
 
-export const links: Route.LinksFunction = () => [
+export const links = () => [
   {
     rel: 'icon',
     type: 'image/svg+xml',
@@ -57,7 +56,7 @@ export default function App() {
   );
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: { readonly error: unknown }) {
   let message = 'Произошла непредвиденная ошибка';
   let details = 'Пожалуйста, обновите страницу или вернитесь на главную.';
 

@@ -32,7 +32,7 @@ export function buttonStyles({
   className,
 }: ButtonStyleOptions = {}): string {
   return cn(
-    'inline-flex items-center justify-center font-sans font-medium rounded-md focus-ring select-none transition-colors duration-fast',
+    'inline-flex items-center justify-center font-sans font-medium rounded-md focus-ring select-none transition-colors duration-fast cursor-pointer',
     'disabled:bg-disabled disabled:text-disabled-fg disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-none',
     buttonVariantStyles[variant],
     buttonSizeStyles[size],
