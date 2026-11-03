@@ -13,6 +13,8 @@ import '@fontsource-variable/onest';
 import '@fontsource-variable/literata';
 import '@/styles/index.css';
 
+import { SiteLayout } from './layout';
+
 export const links: Route.LinksFunction = () => [
   {
     rel: 'icon',
@@ -61,7 +63,11 @@ export function Layout({ children }: { readonly children: ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <SiteLayout>
+      <Outlet />
+    </SiteLayout>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
