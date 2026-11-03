@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react';
+import { ConsultationForm } from '@/features/consultation';
 import { ConsultationModalContext } from '@/shared/lib/consultation-modal-context';
 import { Dialog } from '@/shared/ui/Dialog';
 import { SkipLink } from '@/shared/ui/SkipLink';
@@ -48,9 +49,7 @@ export function SiteLayout({ children, modalContent }: SiteLayoutProps) {
           description="Оставьте контакты, и адвокат свяжется с вами для уточнения деталей."
         >
           {modalContent ?? (
-            <div id="consultation-modal-slot" className="py-2">
-              <p className="text-small text-fg-muted">Форма загружается...</p>
-            </div>
+            <ConsultationForm initialPracticeSlug={initialPracticeSlug} onSuccess={closeModal} />
           )}
         </Dialog>
       </div>
