@@ -1,3 +1,5 @@
+import { BlogPage } from '@/features/blog';
+
 export default function BlogRoute() {
-  return <div>Blog</div>;
+  return <BlogPage />;
 }
