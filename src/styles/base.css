@@ -1,0 +1,27 @@
+@layer base {
+  html {
+    interpolate-size: allow-keywords;
+    scroll-padding-top: var(--spacing-header);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-width: 360px;
+    background-color: var(--color-page);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-fg);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
