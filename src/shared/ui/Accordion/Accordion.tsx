@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { AccordionItem } from './AccordionItem';
 
@@ -13,9 +13,35 @@ export interface AccordionProps {
   readonly items: readonly AccordionEntry[];
   readonly name?: string;
   readonly className?: string;
+  readonly allowMultiple?: boolean;
 }
 
-export function Accordion({ items, name = 'accordion', className }: AccordionProps) {
+export function Accordion({ items, name, className, allowMultiple = false }: AccordionProps) {
+  const [openIds, setOpenIds] = useState<ReadonlySet<string>>(() => {
+    const initial = new Set<string>();
+    items.forEach((item) => {
+      if (item.defaultOpen) {
+        initial.add(item.id);
+      }
+    });
+    return initial;
+  });
+
+  const handleToggle = (id: string) => {
+    setOpenIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        if (!allowMultiple) {
+          next.clear();
+        }
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   return (
     <div className={cn('w-full divide-y-0 border-t border-line-subtle', className)}>
       {items.map((item) => (
@@ -25,7 +51,8 @@ export function Accordion({ items, name = 'accordion', className }: AccordionPro
           name={name}
           title={item.title}
           content={item.content}
-          defaultOpen={item.defaultOpen}
+          isOpen={openIds.has(item.id)}
+          onToggle={() => handleToggle(item.id)}
         />
       ))}
     </div>

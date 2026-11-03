@@ -43,10 +43,8 @@ export function Header({ onOpenConsultation }: HeaderProps) {
                 onClick={onClick}
                 onKeyDown={onKeyDown}
                 className={cn(
-                  'inline-flex items-center gap-1.5 h-control-sm px-2 text-small font-sans rounded-md transition-colors duration-fast focus-ring',
-                  isOpen
-                    ? 'text-fg font-medium bg-hover'
-                    : 'text-fg-muted hover:text-fg hover:bg-hover',
+                  'inline-flex items-center gap-1.5 h-control-sm px-2 text-small font-sans font-medium rounded-md transition-colors duration-fast focus-ring',
+                  isOpen ? 'text-fg bg-hover' : 'text-fg-muted hover:text-fg hover:bg-hover',
                 )}
               >
                 <span>Направления</span>

@@ -24,7 +24,6 @@
     "noImplicitOverride": true,
     "verbatimModuleSyntax": true,
 
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
