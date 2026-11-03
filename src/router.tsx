@@ -5,6 +5,9 @@ import { HomePage } from '@/features/home';
 import { PrivacyPage, TermsPage } from '@/features/legal-pages';
 import { NotFoundPage } from '@/features/not-found';
 import { PracticePage } from '@/features/practice';
+import { ButtonLink } from '@/shared/ui/ButtonLink';
+import { Heading } from '@/shared/ui/Heading';
+import { Text } from '@/shared/ui/Text';
 
 function PracticeRoute() {
   const { slug } = useParams<{ slug: string }>();
@@ -19,16 +22,15 @@ function BlogPostRoute() {
 function RootErrorBoundary() {
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center p-gutter text-center">
-      <h1 className="font-serif text-h1 text-fg">Произошла ошибка</h1>
-      <p className="mt-4 text-body text-fg-muted">
+      <Heading level={1} size="h1">
+        Произошла ошибка
+      </Heading>
+      <Text size="body" tone="muted" className="mt-4">
         Пожалуйста, обновите страницу или вернитесь на главную.
-      </p>
-      <a
-        href="/"
-        className="mt-6 inline-flex h-control-md items-center justify-center rounded-md bg-primary px-6 text-small text-primary-fg transition-colors hover:bg-primary-hover focus-ring cursor-pointer"
-      >
+      </Text>
+      <ButtonLink to="/" variant="primary" size="md" className="mt-6">
         На главную
-      </a>
+      </ButtonLink>
     </main>
   );
 }

@@ -2,8 +2,10 @@ import { X } from 'lucide-react';
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { useScrollLock } from '@/shared/hooks/use-scroll-lock';
+import { Heading } from '@/shared/ui/Heading';
 import { IconButton } from '@/shared/ui/IconButton';
 import { Icon } from '@/shared/ui/Icon';
+import { Text } from '@/shared/ui/Text';
 
 export interface DialogProps {
   readonly open: boolean;
@@ -76,13 +78,13 @@ export function Dialog({ open, onClose, title, description, className, children 
     >
       <div className="flex shrink-0 items-center justify-between border-b border-line-subtle px-6 py-4">
         <div>
-          <h2 id={titleId} className="font-serif text-h3 text-fg leading-tight">
+          <Heading id={titleId} level={2} size="h3" className="leading-tight">
             {title}
-          </h2>
+          </Heading>
           {description && (
-            <p id={descId} className="mt-1 font-sans text-small text-fg-muted">
+            <Text id={descId} size="small" tone="muted" className="mt-1">
               {description}
-            </p>
+            </Text>
           )}
         </div>
         <IconButton

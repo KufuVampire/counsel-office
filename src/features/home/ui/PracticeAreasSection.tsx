@@ -3,6 +3,7 @@ import { paths } from '@/shared/config/paths';
 import { PRACTICE_CATALOG } from '@/shared/config/practice-catalog';
 import { Card } from '@/shared/ui/Card';
 import { Container } from '@/shared/ui/Container';
+import { Divider } from '@/shared/ui/Divider';
 import { Heading } from '@/shared/ui/Heading';
 import { Section } from '@/shared/ui/Section';
 import { Text } from '@/shared/ui/Text';
@@ -30,20 +31,25 @@ export function PracticeAreasSection() {
               className="flex flex-col justify-between h-full group"
             >
               <div className="flex flex-col gap-3">
-                <h3 className="font-serif text-h3 text-fg group-hover:text-primary transition-colors duration-fast">
+                <Heading
+                  level={3}
+                  size="h3"
+                  className="group-hover:text-primary transition-colors duration-fast"
+                >
                   <Link
                     to={paths.practice(practice.slug)}
                     className="focus-ring rounded-sm before:absolute before:inset-0"
                   >
                     {practice.title}
                   </Link>
-                </h3>
-                <p className="font-sans text-small text-fg-muted leading-relaxed">
+                </Heading>
+                <Text size="small" tone="muted" className="leading-relaxed">
                   {practice.summary}
-                </p>
+                </Text>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-line-subtle">
+              <div className="mt-8">
+                <Divider tone="subtle" className="mb-4" />
                 <span className="font-sans text-small font-medium text-link group-hover:text-link-hover transition-colors duration-fast">
                   Подробнее о направлении
                 </span>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { cn } from '@/shared/lib/cn';
 import { paths } from '@/shared/config/paths';
 import { siteConfig } from '@/shared/config/site';
@@ -9,6 +8,8 @@ import { FormField } from '@/shared/ui/FormField';
 import { Input } from '@/shared/ui/Input';
 import { RadioGroup, RadioOption } from '@/shared/ui/RadioGroup';
 import { Select } from '@/shared/ui/Select';
+import { Text } from '@/shared/ui/Text';
+import { TextLink } from '@/shared/ui/TextLink';
 import { Textarea } from '@/shared/ui/Textarea';
 import { PRACTICE_OPTIONS } from '../data/practice-options';
 import { useConsultationForm } from '../hooks/use-consultation-form';
@@ -117,13 +118,9 @@ export function ConsultationForm({
         label={
           <span>
             Согласен на{' '}
-            <Link
-              to={paths.privacy}
-              onClick={(e) => e.stopPropagation()}
-              className="text-link underline underline-offset-2 hover:text-link-hover"
-            >
+            <TextLink href={paths.privacy} onClick={(e) => e.stopPropagation()}>
               обработку персональных данных
-            </Link>
+            </TextLink>
           </span>
         }
       />
@@ -139,9 +136,9 @@ export function ConsultationForm({
         Отправить заявку
       </Button>
 
-      <p className="text-caption font-sans text-fg-subtle leading-relaxed">
+      <Text size="caption" tone="subtle" className="leading-relaxed">
         {siteConfig.disclaimer} Вся переданная информация защищена адвокатской тайной.
-      </p>
+      </Text>
     </form>
   );
 }

@@ -16,7 +16,7 @@ export function useConsultationForm({
   const [values, setValues] = useState<ConsultationFormValues>({
     name: '',
     phone: '',
-    contactMethod: 'phone',
+    contactMethod: 'telegram',
     practiceArea: initialPracticeSlug ?? 'semejnoe-pravo',
     description: '',
     consent: true,
@@ -98,7 +98,7 @@ export function useConsultationForm({
     setValues({
       name: '',
       phone: '',
-      contactMethod: 'phone',
+      contactMethod: 'telegram',
       practiceArea: initialPracticeSlug ?? 'semejnoe-pravo',
       description: '',
       consent: true,

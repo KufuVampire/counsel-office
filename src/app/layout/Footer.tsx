@@ -3,7 +3,9 @@ import { paths } from '@/shared/config/paths';
 import { PRACTICE_CATALOG } from '@/shared/config/practice-catalog';
 import { siteConfig } from '@/shared/config/site';
 import { Container } from '@/shared/ui/Container';
+import { Divider } from '@/shared/ui/Divider';
 import { Logo } from '@/shared/ui/Logo';
+import { Text } from '@/shared/ui/Text';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,35 +15,34 @@ export function Footer() {
       <Container size="content" className="flex flex-col gap-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand info */}
-          <div className="flex flex-col gap-3 md:col-span-1">
+          <div className="flex flex-col gap-4 md:col-span-1">
             <Logo />
             <p className="font-sans text-small text-fg-muted leading-relaxed">
-              Квалифицированная правовая поддержка доверителей в сложных жизненных и деловых
-              ситуациях.
+              {siteConfig.tagline}
             </p>
           </div>
 
-          {/* Practice areas */}
+          {/* Practice areas links */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-sans text-small font-semibold text-fg">Направления</h3>
-            <ul className="flex flex-col gap-2 font-sans text-small text-fg-muted">
-              {PRACTICE_CATALOG.map((item) => (
-                <li key={item.slug}>
+            <h4 className="font-sans text-small font-medium text-fg">Направления</h4>
+            <ul className="flex flex-col gap-2 font-sans text-small text-fg-muted list-none p-0 m-0">
+              {PRACTICE_CATALOG.map((practice) => (
+                <li key={practice.slug}>
                   <Link
-                    to={paths.practice(item.slug)}
+                    to={paths.practice(practice.slug)}
                     className="hover:text-fg transition-colors duration-fast"
                   >
-                    {item.title}
+                    {practice.title}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Navigation */}
+          {/* Quick links */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-sans text-small font-semibold text-fg">Навигация</h3>
-            <ul className="flex flex-col gap-2 font-sans text-small text-fg-muted">
+            <h4 className="font-sans text-small font-medium text-fg">Навигация</h4>
+            <ul className="flex flex-col gap-2 font-sans text-small text-fg-muted list-none p-0 m-0">
               <li>
                 <Link to={paths.blog} className="hover:text-fg transition-colors duration-fast">
                   Блог и статьи
@@ -65,9 +66,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contacts */}
+          {/* Contacts info */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-sans text-small font-semibold text-fg">Контакты</h3>
+            <h4 className="font-sans text-small font-medium text-fg">Контакты</h4>
             <div className="flex flex-col gap-2 font-sans text-small text-fg-muted">
               <a
                 href={`tel:${siteConfig.phoneClean}`}
@@ -87,9 +88,9 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="hover:text-fg transition-colors duration-fast"
               >
-                Telegram: {siteConfig.telegram}
+                {siteConfig.telegram}
               </a>
-              <p className="mt-1 text-caption text-fg-subtle">
+              <p className="text-caption text-fg-subtle mt-1">
                 {siteConfig.address}
                 <br />
                 {siteConfig.workingHours}
@@ -99,20 +100,23 @@ export function Footer() {
         </div>
 
         {/* Disclaimer & legal links */}
-        <div className="pt-8 border-t border-line-subtle flex flex-col gap-4">
-          <p className="font-sans text-caption text-fg-subtle leading-relaxed">
-            {siteConfig.disclaimer}
-          </p>
+        <div>
+          <Divider tone="subtle" className="mb-8" />
+          <div className="flex flex-col gap-4">
+            <Text size="caption" tone="subtle" className="leading-relaxed">
+              {siteConfig.disclaimer}
+            </Text>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-sans text-caption text-fg-subtle">
-            <p>© {currentYear} Counsel Office. Все права защищены.</p>
-            <div className="flex items-center gap-4">
-              <Link to={paths.privacy} className="hover:text-fg transition-colors duration-fast">
-                Политика конфиденциальности
-              </Link>
-              <Link to={paths.terms} className="hover:text-fg transition-colors duration-fast">
-                Пользовательское соглашение
-              </Link>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-sans text-caption text-fg-subtle">
+              <p>© {currentYear} Counsel Office. Все права защищены.</p>
+              <div className="flex items-center gap-4">
+                <Link to={paths.privacy} className="hover:text-fg transition-colors duration-fast">
+                  Политика конфиденциальности
+                </Link>
+                <Link to={paths.terms} className="hover:text-fg transition-colors duration-fast">
+                  Пользовательское соглашение
+                </Link>
+              </div>
             </div>
           </div>
         </div>

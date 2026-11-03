@@ -35,20 +35,20 @@ export function BurgerButton({
       <div className="relative flex h-4 w-5 flex-col justify-between">
         <span
           className={cn(
-            'block h-0.5 w-full bg-current rounded-full transition-transform duration-base',
-            open && 'translate-y-1.5 rotate-45',
+            'block h-0.5 w-full bg-current rounded-full transition-all duration-base ease-standard origin-center',
+            open ? 'translate-y-[7px] rotate-45' : 'translate-y-0 rotate-0',
           )}
         />
         <span
           className={cn(
-            'block h-0.5 w-full bg-current rounded-full transition-opacity duration-fast',
-            open && 'opacity-0',
+            'block h-0.5 w-full bg-current rounded-full transition-all duration-base ease-standard',
+            open ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100',
           )}
         />
         <span
           className={cn(
-            'block h-0.5 w-full bg-current rounded-full transition-transform duration-base',
-            open && '-translate-y-2 -rotate-45',
+            'block h-0.5 w-full bg-current rounded-full transition-all duration-base ease-standard origin-center',
+            open ? '-translate-y-[7px] -rotate-45' : 'translate-y-0 rotate-0',
           )}
         />
       </div>

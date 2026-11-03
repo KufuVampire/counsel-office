@@ -157,7 +157,7 @@
   --container-content: 70rem;
   --container-wide: 80rem;
 
-  --spacing-gutter: clamp(1rem, 0.25rem + 2.5vw, 2.5rem);
+  --spacing-gutter: clamp(0.75rem, 0.25rem + 2.5vw, 2.5rem);
   --spacing-section: clamp(3.5rem, 2rem + 6vw, 7.5rem);
   --spacing-section-sm: clamp(2.5rem, 1.5rem + 3.5vw, 4.5rem);
   --spacing-header: 4rem;

@@ -53,10 +53,12 @@ export function ProcessSection() {
                   <span className="font-serif text-h2 font-normal text-line-strong block mb-4">
                     {step.number}
                   </span>
-                  <h3 className="font-serif text-h4 text-fg mb-2">{step.title}</h3>
-                  <p className="font-sans text-small text-fg-muted leading-relaxed">
+                  <Heading level={3} size="h4" className="mb-2">
+                    {step.title}
+                  </Heading>
+                  <Text size="small" tone="muted" className="leading-relaxed">
                     {step.description}
-                  </p>
+                  </Text>
                 </div>
               </Card>
             </li>

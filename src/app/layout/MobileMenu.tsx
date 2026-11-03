@@ -7,6 +7,7 @@ import { useClickOutside } from '@/shared/hooks/use-click-outside';
 import { useEscapeKey } from '@/shared/hooks/use-escape-key';
 import { usePresence } from '@/shared/hooks/use-presence';
 import { Button } from '@/shared/ui/Button';
+import { Divider } from '@/shared/ui/Divider';
 
 export interface MobileMenuProps {
   readonly open: boolean;
@@ -87,7 +88,8 @@ export function MobileMenu({ open, onClose, onOpenConsultation, triggerRef }: Mo
         </Link>
       </nav>
 
-      <div className="pt-2 border-t border-line-subtle">
+      <div>
+        <Divider tone="subtle" className="mb-4" />
         <Button
           variant="primary"
           size="md"

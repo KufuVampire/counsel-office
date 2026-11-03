@@ -1,7 +1,7 @@
-import { Link } from 'react-router';
 import { POSTS } from '@/features/blog/data/posts';
 import { PostCard } from '@/features/blog/ui/PostCard';
 import { paths } from '@/shared/config/paths';
+import { ButtonLink } from '@/shared/ui/ButtonLink';
 import { Container } from '@/shared/ui/Container';
 import { Heading } from '@/shared/ui/Heading';
 import { Section } from '@/shared/ui/Section';
@@ -24,12 +24,14 @@ export function BlogPreviewSection() {
             </Text>
           </div>
 
-          <Link
+          <ButtonLink
             to={paths.blog}
-            className="inline-flex h-control-md items-center justify-center font-sans font-medium rounded-md px-4 text-small transition-colors duration-fast bg-surface text-fg hover:bg-hover border border-line focus-ring self-start sm:self-auto shrink-0"
+            variant="secondary"
+            size="md"
+            className="self-start sm:self-auto shrink-0"
           >
             Все статьи
-          </Link>
+          </ButtonLink>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

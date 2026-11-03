@@ -1,4 +1,4 @@
-import type { KeyboardEvent, ReactNode, Ref } from 'react';
+import type { ButtonSize, ButtonVariant } from '@/shared/ui/Button';
 
 export interface DropdownMenuItem {
   readonly label: string;
@@ -7,15 +7,11 @@ export interface DropdownMenuItem {
 }
 
 export interface DropdownMenuProps {
-  readonly trigger: (props: {
-    readonly ref?: Ref<HTMLButtonElement>;
-    readonly 'aria-haspopup': 'menu';
-    readonly 'aria-expanded': boolean;
-    readonly onClick: () => void;
-    readonly onKeyDown: (e: KeyboardEvent) => void;
-    readonly isOpen: boolean;
-  }) => ReactNode;
+  readonly label: string;
   readonly items: readonly DropdownMenuItem[];
+  readonly buttonVariant?: ButtonVariant;
+  readonly buttonSize?: ButtonSize;
+  readonly buttonClassName?: string;
   readonly align?: 'left' | 'right';
   readonly className?: string;
 }

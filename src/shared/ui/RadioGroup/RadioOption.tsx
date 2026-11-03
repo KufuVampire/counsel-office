@@ -47,15 +47,15 @@ export function RadioOption({
         aria-hidden="true"
         className={cn(
           'inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full',
-          'border border-line-strong bg-surface transition-colors duration-fast',
+          'border bg-surface transition-colors duration-fast',
+          isChecked ? 'border-primary' : 'border-line-strong',
           'peer-focus-visible:outline-2 peer-focus-visible:outline-focus peer-focus-visible:outline-offset-2',
-          'peer-checked:border-primary',
         )}
       >
         <span
           className={cn(
-            'h-2 w-2 rounded-full bg-primary scale-0 transition-transform duration-fast',
-            'peer-checked:scale-100',
+            'h-2 w-2 rounded-full bg-primary transition-transform duration-fast',
+            isChecked ? 'scale-100' : 'scale-0',
           )}
         />
       </span>

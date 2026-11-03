@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { NotFoundPage } from '@/features/not-found';
 import { paths } from '@/shared/config/paths';
 import { formatDate } from '@/shared/lib/format-date';
@@ -8,6 +7,7 @@ import { Card } from '@/shared/ui/Card';
 import { Container } from '@/shared/ui/Container';
 import { Heading } from '@/shared/ui/Heading';
 import { Section } from '@/shared/ui/Section';
+import { TextLink } from '@/shared/ui/TextLink';
 import { POSTS } from './data/posts';
 import { BlogCTA } from './ui/BlogCTA';
 import { PostCard } from './ui/PostCard';
@@ -75,12 +75,9 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
               Читайте также
             </Heading>
             {post.practiceSlug && (
-              <Link
-                to={paths.practice(post.practiceSlug)}
-                className="font-sans text-small text-link hover:text-link-hover underline underline-offset-4"
-              >
+              <TextLink href={paths.practice(post.practiceSlug)}>
                 Все о практике направления
-              </Link>
+              </TextLink>
             )}
           </div>
 

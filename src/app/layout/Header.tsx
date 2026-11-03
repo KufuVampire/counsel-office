@@ -1,14 +1,11 @@
-import { ChevronDown } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router';
-import { cn } from '@/shared/lib/cn';
 import { paths } from '@/shared/config/paths';
 import { PRACTICE_CATALOG } from '@/shared/config/practice-catalog';
 import { BurgerButton } from '@/shared/ui/BurgerButton';
 import { Button } from '@/shared/ui/Button';
 import { Container } from '@/shared/ui/Container';
 import { DropdownMenu } from '@/shared/ui/DropdownMenu';
-import { Icon } from '@/shared/ui/Icon';
 import { Logo } from '@/shared/ui/Logo';
 import { NavLinkItem } from '@/shared/ui/NavLinkItem';
 import { MobileMenu } from './MobileMenu';
@@ -33,29 +30,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav aria-label="Основная навигация" className="hidden md:flex items-center gap-6">
-          <DropdownMenu
-            items={practiceMenuItems}
-            trigger={({ 'aria-expanded': expanded, onClick, onKeyDown, isOpen, ref }) => (
-              <button
-                ref={ref}
-                type="button"
-                aria-expanded={expanded}
-                onClick={onClick}
-                onKeyDown={onKeyDown}
-                className={cn(
-                  'inline-flex items-center gap-1.5 h-control-sm px-2 text-small font-sans font-medium rounded-md transition-colors duration-fast focus-ring',
-                  isOpen ? 'text-fg bg-hover' : 'text-fg-muted hover:text-fg hover:bg-hover',
-                )}
-              >
-                <span>Направления</span>
-                <Icon
-                  icon={ChevronDown}
-                  size="sm"
-                  className={cn('transition-transform duration-base', isOpen && 'rotate-180')}
-                />
-              </button>
-            )}
-          />
+          <DropdownMenu label="Направления" items={practiceMenuItems} />
 
           <NavLinkItem to={paths.blog} className="h-control-sm px-2 py-0 text-small">
             Блог

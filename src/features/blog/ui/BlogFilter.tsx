@@ -1,4 +1,5 @@
 import { Chip } from '@/shared/ui/Chip';
+import { VisuallyHidden } from '@/shared/ui/VisuallyHidden';
 
 export interface BlogFilterProps {
   readonly categories: readonly string[];
@@ -15,7 +16,7 @@ export function BlogFilter({
 }: BlogFilterProps) {
   return (
     <div className={className}>
-      <span className="sr-only">Фильтрация по категориям</span>
+      <VisuallyHidden>Фильтрация по категориям</VisuallyHidden>
       <div className="flex flex-wrap items-center gap-2">
         {categories.map((category) => (
           <Chip
