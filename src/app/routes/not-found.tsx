@@ -1,3 +1,5 @@
+import { NotFoundPage } from '@/features/not-found';
+
 export default function NotFoundRoute() {
-  return <div>Not Found</div>;
+  return <NotFoundPage />;
 }
