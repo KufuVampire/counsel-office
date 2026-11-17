@@ -1,3 +1,5 @@
+import { siteConfig } from '@/shared/config/site';
+
 export interface ConsultationPayload {
   readonly name: string;
   readonly phone: string;
@@ -16,17 +18,7 @@ const SEND_ERROR_MESSAGE =
  * Тело уходит как text/plain: так браузер не делает preflight-запрос, который Apps Script не обрабатывает.
  */
 export async function sendConsultation(payload: ConsultationPayload): Promise<void> {
-  const endpoint = import.meta.env.VITE_CONSULTATION_ENDPOINT;
-
-  if (!endpoint) {
-    if (import.meta.env.DEV) {
-      console.warn('VITE_CONSULTATION_ENDPOINT не задан: заявка не отправлена', payload);
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      return;
-    }
-    throw new Error(SEND_ERROR_MESSAGE);
-  }
-
+  const endpoint = siteConfig.consultationEndpoint;
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 

@@ -4,6 +4,10 @@ export const siteConfig = {
   tagline: 'Частная юридическая практика',
   siteUrl: import.meta.env.VITE_SITE_URL || 'https://counsel-office.vercel.app',
   isIndexable: import.meta.env.VITE_INDEXABLE === 'true',
+  // Веб-приложение Google Apps Script (apps-script/Code.gs): адрес публичный, он и так виден в бандле
+  consultationEndpoint:
+    import.meta.env.VITE_CONSULTATION_ENDPOINT ||
+    'https://script.google.com/macros/s/AKfycbym-2Ygl48I5NLD0RgdOnBH1Wbz7jRdeJuCwDbwPP1DZ0IKLB1PZFPmGnh1IAt6Hyti/exec',
   phone: '+7 (495) 000-00-00',
   phoneClean: '+74950000000',
   email: 'hello@counsel-office.example',
