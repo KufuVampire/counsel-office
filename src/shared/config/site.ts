@@ -2,7 +2,7 @@
 export const siteConfig = {
   brandName: 'Counsel Office',
   tagline: 'Частная юридическая практика',
-  siteUrl: import.meta.env.VITE_SITE_URL || 'https://counsel-office.example',
+  siteUrl: import.meta.env.VITE_SITE_URL || 'https://counsel-office.vercel.app',
   isIndexable: import.meta.env.VITE_INDEXABLE === 'true',
   phone: '+7 (000) 000-00-00', // MOCK
   phoneClean: '+70000000000', // MOCK
