@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet, useParams } from 'react-router';
+import { createBrowserRouter, Outlet, ScrollRestoration, useParams } from 'react-router';
 import { SiteLayout } from '@/app/layout';
 import { BlogPage, BlogPostPage } from '@/features/blog';
 import { HomePage } from '@/features/home';
@@ -39,6 +39,8 @@ export const router = createBrowserRouter([
   {
     element: (
       <SiteLayout>
+        {/* Новая страница открывается сверху, ссылки вида /#about прокручивают к разделу */}
+        <ScrollRestoration />
         <Outlet />
       </SiteLayout>
     ),

@@ -51,9 +51,9 @@ export function AboutSection() {
                 </div>
                 <div>
                   <h3 className="font-sans text-caption font-semibold uppercase tracking-wide text-fg-subtle mb-1">
-                    Статус
+                    Специализация
                   </h3>
-                  <p className="font-sans text-small text-fg">{specialistConfig.registryNumber}</p>
+                  <p className="font-sans text-small text-fg">{specialistConfig.specialization}</p>
                 </div>
               </div>
             </Card>

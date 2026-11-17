@@ -37,12 +37,13 @@ export function RadioGroup({
     <RadioGroupContext.Provider value={contextValue}>
       <fieldset className={cn('flex flex-col gap-2', className)}>
         {legend && (
-          <legend className="font-sans text-small font-medium text-fg mb-1">{legend}</legend>
+          <legend className="font-sans text-small font-medium text-fg mb-1.5">{legend}</legend>
         )}
         <div
           className={cn(
             'flex gap-4 flex-wrap',
-            orientation === 'vertical' ? 'flex-col' : 'flex-row items-center',
+            // Горизонтальный ряд по высоте как поле ввода, чтобы отступы в форме читались ровно
+            orientation === 'vertical' ? 'flex-col' : 'flex-row items-center min-h-control-sm',
           )}
         >
           {children}

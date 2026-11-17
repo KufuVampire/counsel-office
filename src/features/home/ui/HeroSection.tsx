@@ -70,7 +70,7 @@ export function HeroSection() {
                   {specialistConfig.fullName}
                 </Heading>
                 <span className="font-sans text-caption text-fg-subtle">
-                  {specialistConfig.registryNumber}
+                  {specialistConfig.status}
                 </span>
               </div>
 
