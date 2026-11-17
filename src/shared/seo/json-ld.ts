@@ -12,8 +12,8 @@ export function buildAttorneySchema() {
     email: siteConfig.email,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'ул. Примерная, д. 1, офис 00',
-      addressLocality: 'Город',
+      streetAddress: siteConfig.streetAddress,
+      addressLocality: siteConfig.city,
       addressCountry: 'RU',
     },
     openingHours: 'Mo-Fr 10:00-19:00',

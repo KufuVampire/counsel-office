@@ -6,6 +6,7 @@ import { PRACTICE_CATALOG } from '@/shared/config/practice-catalog';
 import { useClickOutside } from '@/shared/hooks/use-click-outside';
 import { useEscapeKey } from '@/shared/hooks/use-escape-key';
 import { usePresence } from '@/shared/hooks/use-presence';
+import { useScrollLock } from '@/shared/hooks/use-scroll-lock';
 import { Button } from '@/shared/ui/Button';
 import { Divider } from '@/shared/ui/Divider';
 
@@ -23,6 +24,7 @@ export function MobileMenu({ open, onClose, onOpenConsultation, triggerRef }: Mo
 
   useClickOutside(menuRef, onClose, open, triggerRef);
   useEscapeKey(onClose, open);
+  useScrollLock(open);
 
   // Закрытие при смене маршрута
   useEffect(() => {
@@ -35,73 +37,84 @@ export function MobileMenu({ open, onClose, onOpenConsultation, triggerRef }: Mo
   if (!isMounted) return null;
 
   return (
-    <div
-      ref={menuRef}
-      id="mobile-navigation"
-      data-state={state}
-      onAnimationEnd={onAnimationEnd}
-      className={cn(
-        'absolute top-full left-0 w-full z-dropdown bg-page border-b border-line-subtle shadow-overlay',
-        'p-gutter flex flex-col gap-6 md:hidden max-h-[85dvh] overflow-y-auto scrollbar-custom',
-        state === 'open' ? 'animate-sheet-in' : 'animate-sheet-out',
-      )}
-    >
-      <nav aria-label="Мобильная навигация" className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <span className="font-sans text-caption font-medium text-fg-subtle">
-            Направления работы
-          </span>
-          <div className="flex flex-col pl-2 border-l border-line-subtle gap-1">
-            {PRACTICE_CATALOG.map((practice) => (
-              <Link
-                key={practice.slug}
-                to={paths.practice(practice.slug)}
-                onClick={onClose}
-                className="py-2 text-small font-sans text-fg hover:text-primary transition-colors"
-              >
-                {practice.title}
-              </Link>
-            ))}
+    <>
+      {/* Затемнение страницы под меню: отделяет меню от контента и закрывает его по клику */}
+      <div
+        aria-hidden="true"
+        data-state={state}
+        className={cn(
+          'fixed inset-x-0 bottom-0 top-header bg-overlay md:hidden',
+          state === 'open' ? 'animate-fade-in' : 'animate-fade-out',
+        )}
+      />
+      <div
+        ref={menuRef}
+        id="mobile-navigation"
+        data-state={state}
+        onAnimationEnd={onAnimationEnd}
+        className={cn(
+          'absolute top-full left-0 w-full z-dropdown bg-page border-b border-line-subtle shadow-overlay',
+          'p-gutter flex flex-col gap-6 md:hidden max-h-[85dvh] overflow-y-auto scrollbar-custom',
+          state === 'open' ? 'animate-sheet-in' : 'animate-sheet-out',
+        )}
+      >
+        <nav aria-label="Мобильная навигация" className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <span className="font-sans text-caption font-medium text-fg-subtle">
+              Направления работы
+            </span>
+            <div className="flex flex-col pl-2 border-l border-line-subtle gap-1">
+              {PRACTICE_CATALOG.map((practice) => (
+                <Link
+                  key={practice.slug}
+                  to={paths.practice(practice.slug)}
+                  onClick={onClose}
+                  className="py-2 text-small font-sans text-fg hover:text-primary transition-colors"
+                >
+                  {practice.title}
+                </Link>
+              ))}
+            </div>
           </div>
+
+          <Link
+            to={paths.blog}
+            onClick={onClose}
+            className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
+          >
+            Блог
+          </Link>
+          <Link
+            to="/#about"
+            onClick={onClose}
+            className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
+          >
+            О специалисте
+          </Link>
+          <Link
+            to="/#contacts"
+            onClick={onClose}
+            className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
+          >
+            Контакты
+          </Link>
+        </nav>
+
+        <div>
+          <Divider tone="subtle" className="mb-4" />
+          <Button
+            variant="primary"
+            size="md"
+            fullWidth
+            onClick={() => {
+              onClose();
+              onOpenConsultation();
+            }}
+          >
+            Записаться на консультацию
+          </Button>
         </div>
-
-        <Link
-          to={paths.blog}
-          onClick={onClose}
-          className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
-        >
-          Блог
-        </Link>
-        <Link
-          to="/#about"
-          onClick={onClose}
-          className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
-        >
-          О специалисте
-        </Link>
-        <Link
-          to="/#contacts"
-          onClick={onClose}
-          className="py-1 text-body font-sans text-fg hover:text-primary transition-colors"
-        >
-          Контакты
-        </Link>
-      </nav>
-
-      <div>
-        <Divider tone="subtle" className="mb-4" />
-        <Button
-          variant="primary"
-          size="md"
-          fullWidth
-          onClick={() => {
-            onClose();
-            onOpenConsultation();
-          }}
-        >
-          Записаться на консультацию
-        </Button>
       </div>
-    </div>
+    </>
   );
 }
