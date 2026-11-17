@@ -35,6 +35,7 @@ export function ConsultationForm({
     errorMessage,
     nameInputRef,
     phoneInputRef,
+    errorAlertRef,
     setFieldValue,
     handleBlur,
     handleSubmit,
@@ -48,9 +49,11 @@ export function ConsultationForm({
   return (
     <form onSubmit={handleSubmit} noValidate className={cn('flex flex-col gap-4', className)}>
       {status === 'error' && (
-        <Alert tone="danger" title="Ошибка отправки" role="alert">
-          {errorMessage || 'Не удалось отправить заявку. Попробуйте еще раз.'}
-        </Alert>
+        <div ref={errorAlertRef} className="scroll-mt-24">
+          <Alert tone="danger" title="Ошибка отправки" role="alert">
+            {errorMessage || 'Не удалось отправить заявку. Попробуйте еще раз.'}
+          </Alert>
+        </div>
       )}
 
       <ConsultationHoneypot
