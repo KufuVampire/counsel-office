@@ -2,6 +2,12 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { formatPhone, cleanPhone } from '../src/shared/lib/format-phone.ts';
 import { validateConsultation } from '../src/features/consultation/lib/validate-consultation.ts';
+import { buildConsultationPayload } from '../src/features/consultation/lib/build-consultation-payload.ts';
+
+const practiceOptions = [
+  { value: 'semejnoe-pravo', label: 'Семейное право' },
+  { value: 'arbitrazh', label: 'Арбитражные споры' },
+];
 
 describe('formatPhone', () => {
   it('форматирует 10 цифр с префиксом +7', () => {
@@ -83,5 +89,44 @@ describe('validateConsultation', () => {
     });
 
     assert.equal(errors.name, 'Имя должно содержать не менее 2 символов');
+  });
+});
+
+describe('buildConsultationPayload', () => {
+  const values = {
+    name: '  Алексей ',
+    phone: '+7 (999) 123-45-67',
+    contactMethod: 'telegram' as const,
+    practiceArea: 'arbitrazh',
+    description: '  Вопрос по договору поставки  ',
+    consent: true,
+    honeypot: '',
+  };
+
+  it('подставляет название направления вместо slug', () => {
+    const payload = buildConsultationPayload(values, practiceOptions, '/');
+    assert.equal(payload.practiceArea, 'Арбитражные споры');
+  });
+
+  it('обрезает пробелы в имени и описании', () => {
+    const payload = buildConsultationPayload(values, practiceOptions, '/');
+    assert.equal(payload.name, 'Алексей');
+    assert.equal(payload.description, 'Вопрос по договору поставки');
+  });
+
+  it('оставляет slug, если направления нет в списке', () => {
+    const payload = buildConsultationPayload(
+      { ...values, practiceArea: 'other' },
+      practiceOptions,
+      '/',
+    );
+    assert.equal(payload.practiceArea, 'other');
+  });
+
+  it('не передаёт служебные поля формы', () => {
+    const payload = buildConsultationPayload(values, practiceOptions, '/practice/arbitrazh');
+    assert.equal(payload.page, '/practice/arbitrazh');
+    assert.ok(!('honeypot' in payload));
+    assert.ok(!('consent' in payload));
   });
 });

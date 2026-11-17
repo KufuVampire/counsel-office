@@ -21,7 +21,8 @@ export function PostCard({ post, className }: PostCardProps) {
       className={cn('flex flex-col justify-between h-full group', className)}
     >
       <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 flex-wrap">
+        {/* Тег и дата всегда в две строки, чтобы заголовки карточек в ряду стояли на одной высоте */}
+        <div className="flex flex-col items-start gap-2">
           <Badge tone="neutral">{post.category}</Badge>
           <span className="text-caption font-sans text-fg-subtle">
             <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time> ·{' '}

@@ -104,7 +104,7 @@ export function Footer() {
           <Divider tone="subtle" className="mb-8" />
           <div className="flex flex-col gap-4">
             <Text size="caption" tone="subtle" className="leading-relaxed">
-              {siteConfig.disclaimer}
+              {siteConfig.disclaimer} {siteConfig.demoNotice}
             </Text>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-sans text-caption text-fg-subtle">
